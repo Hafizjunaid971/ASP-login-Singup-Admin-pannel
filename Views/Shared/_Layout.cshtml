@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <style>
+.navbar-inverse { background-color: #74D6FF;
+border-color: #74D6FF;
+ color: #VALUE;
+}
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a {
+    color: #000000;
+}
+
+
+.contact{
+	font-family: "Times New Roman", Times, serif; 
+}
+.linkc a {
+	color: white;
+	text-decoration: none;
+	font-family: "Times New Roman", Times, serif;
+	transition: 0.5s ease;
+}
+
+.linkc a:hover{
+	color:#fcba03; 
+}
+
+.social-media ul{
+	display: inline-block;
+}
+
+.social-media ul li{
+	float: left;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.social-media ul li a{
+	font-size: 20px;
+	color: white;
+	letter-spacing: 0.1em;
+	background: transparent;
+     -moz-transition: all 0.5s ease-in-out 0s;
+  -ms-transition: all 0.5s ease-in-out 0s;
+  -o-transition: all 0.5s ease-in-out 0s;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+
+}
+
+.social-media ul li a:hover{
+
+	color: #fcba03;
+}
+
+input[type=text]{
+	height: 32px;
+	border-radius: 3px;
+	width: 180px;
+	float: left;
+}
+input[type=text]::placeholder{
+	color: #999;
+}
+button{
+	transition: all 0.5s ease-in-out;
+}
+        .container {
+            width:100% !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Employees", new { area = "" }, new { @class = "navbar-brand", @style = "color:orange" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                 
+                    <li>@Html.ActionLink("About", "About", "Employees")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Get List", "Index", "Employees")</li>
+                        if (User.IsInRole("admin") || User.IsInRole("Customer"))
+                        {
+                        <li>@Html.ActionLink("Create", "Create", "Employees")</li>
+                        }
+                        <li><a>Dear - @User.Identity.Name</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Acount")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Acount")</li>
+                    }
+                 </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+
+
+            <div style="background-color: #211a30;color: white;">
+                <br><br><br>
+                <div class="container">
+
+
+                    <div class="col-md-3">
+
+                        <h2 style="color: #fcba03;font-family:Times New Roman, Times, serif; ">Contact Us</h2><br>
+                        <p class="contact">Pakistan</p>
+                        <p class="contact">New Karachi</p>
+                        <p class="contact">+92 3129164</p>
+                        <p class="contact">Hafizjunaid971@gmail.com</p>
+
+
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <h2 style="color: #fcba03;font-family:Times New Roman, Times, serif; ">Quick Links</h2><br>
+                        <p class="linkc"><a href="#"> Home  </a></p>
+                        <p class="linkc"><a href="#"> Gallery  </a></p>
+                        <p class="linkc"><a href="#">  Contact Us </a></p>
+                        <p class="linkc"><a href="#"> About Us  </a></p>
+
+
+
+                    </div>
+
+
+
+
+                    <div class="col-md-3">
+                        <h2 style="color: #fcba03; font-family:Times New Roman, Times, serif; ">Social Media</h2><br>
+                        <div class="social-media">
+
+                            <ul class="list-unstyled">
+                                <li><a href="#"> <i class="fab fa-facebook-f"> </i></a>  </li>
+                                <li><a href="#"> <i class="fab fa-twitter"> </i></a>  </li>
+                                <li><a href="#"> <i class="fab fa-instagram"> </i></a>  </li>
+                                <li><a href="#"> <i class="fab fa-google-plus-g"> </i></a>  </li>
+                                <li><a href="#"> <i class="fab fa-youtube"> </i></a>  </li>
+
+
+
+
+
+
+                            </ul>
+
+
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                        <h3 style="color: #fcba03; font-family:Times New Roman, Times, serif; ">Subcribe Our New Letter</h3><br>
+                        <form>
+                            <input type="text" name="subcribe" placeholder="Enter Gmail" class="form-control" required=""><button class="btn btn-success">Submit</button>
+                        </form>
+
+
+                    </div>
+
+
+
+                </div>
+
+                <hr>
+                <div class="container">
+
+                    <h4 style="text-align: center;font-family:Times New Roman, Times, serif;  ">Copyright ©2021 All rights reserved | This Footer By Hafiz Junaid Ahmed Ansari</h4>
+
+                </div>
+
+
+
+
+                <br><br><br>
+            </div>
+
+
+
+
+
+            <p>&copy; @DateTime.Now.Year - Created By Hafiz Junid Ahmed</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
